@@ -25,8 +25,8 @@ public class Actiune extends Instrument implements Evaluabil, Actualizabil {
 
     @Override
     public double valoare(Instrument instrument) {
-        return this.getPret() +
-                (this.getPret() * this.procentDividend / 100.0F);
+        return this.getPretInstrument() +
+                (this.getPretInstrument() * this.procentDividend / 100.0F);
     }
 
     @Override
@@ -38,10 +38,10 @@ public class Actiune extends Instrument implements Evaluabil, Actualizabil {
         System.out.println("Clasa citita " + numeClasa);
 
         Actiune local = new Actiune();
-        local.setSimbol(lineScanner.next());
-        local.setNume(lineScanner.next());
-        local.setPret(lineScanner.nextDouble());
-        local.setStare(Status.valueOf(lineScanner.next()));
+        local.setSimbolInstrument(lineScanner.next());
+        local.setNumeInstrument(lineScanner.next());
+        local.setPretInstrument(lineScanner.nextDouble());
+        local.setStareInstrument(Status.valueOf(lineScanner.next()));
         local.setProcentDividend(lineScanner.nextFloat());
 
         return local;
@@ -50,10 +50,15 @@ public class Actiune extends Instrument implements Evaluabil, Actualizabil {
     @Override
     public String toString() {
         return this.getClass().getName() + "," +
-                this.getSimbol() + "," +
-                this.getNume() + "," +
-                Double.toString(this.getPret()) + "," +
-                this.getStare().toString() + "," +
+                this.getSimbolInstrument() + "," +
+                this.getNumeInstrument() + "," +
+                Double.toString(this.getPretInstrument()) + "," +
+                this.getStareInstrument().toString() + "," +
                 this.procentDividend;
+    }
+
+    @Override
+    public void actualizare(Instrument instrument, Status stareNoua) {
+        instrument.setStareInstrument(stareNoua);
     }
 }

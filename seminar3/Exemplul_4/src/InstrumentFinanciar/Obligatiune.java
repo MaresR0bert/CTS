@@ -25,7 +25,7 @@ public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
 
     @Override
     public double valoare(Instrument instrument) {
-        return this.getPret() + this.cupon;
+        return this.getPretInstrument() + this.cupon;
     }
 
     @Override
@@ -37,10 +37,10 @@ public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
         System.out.println("Clasa citita " + numeClasa);
 
         Obligatiune local = new Obligatiune();
-        local.setSimbol(lineScanner.next());
-        local.setNume(lineScanner.next());
-        local.setPret(lineScanner.nextDouble());
-        local.setStare(Status.valueOf(lineScanner.next()));
+        local.setSimbolInstrument(lineScanner.next());
+        local.setNumeInstrument(lineScanner.next());
+        local.setPretInstrument(lineScanner.nextDouble());
+        local.setStareInstrument(Status.valueOf(lineScanner.next()));
         local.setCupon(lineScanner.nextFloat());
 
         return local;
@@ -52,10 +52,15 @@ public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
 //                "cupon=" + cupon +
 //                '}';
         return this.getClass().getName() + "," +
-                this.getSimbol() + "," +
-                this.getNume() + "," +
-                Double.toString(this.getPret()) + "," +
-                this.getStare().toString() + "," +
+                this.getSimbolInstrument() + "," +
+                this.getNumeInstrument() + "," +
+                Double.toString(this.getPretInstrument()) + "," +
+                this.getStareInstrument().toString() + "," +
                 this.cupon;
+    }
+
+    @Override
+    public void actualizare(Instrument instrument, Status stareNoua) {
+        instrument.setStareInstrument(stareNoua);
     }
 }

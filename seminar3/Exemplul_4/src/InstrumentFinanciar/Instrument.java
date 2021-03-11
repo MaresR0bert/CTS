@@ -3,56 +3,56 @@ package InstrumentFinanciar;
 
 import java.util.Scanner;
 
-public class Instrument implements Evaluabil {
-    private String simbol;
-    private String nume;
-    private double pret;
-    private Status stare;
+public class Instrument implements Evaluabil, ParceableFromString {
+    private String simbolInstrument;
+    private String numeInstrument;
+    private double pretInstrument;
+    private Status stareInstrument;
 
-    public Instrument(String simbol, String nume, double pret, Status stare) {
-        this.simbol = simbol;
-        this.nume = nume;
-        this.pret = pret;
-        this.stare = stare;
+    public Instrument(String simbolInstrument, String numeInstrument, double pretInstrument, Status stareInstrument) {
+        this.simbolInstrument = simbolInstrument;
+        this.numeInstrument = numeInstrument;
+        this.pretInstrument = pretInstrument;
+        this.stareInstrument = stareInstrument;
     }
 
     public Instrument() {
-        this.simbol = null;
-        this.nume = null;
-        this.pret = 0.0F;
-        this.stare = Status.NECUNOSCUT;
+        this.simbolInstrument = null;
+        this.numeInstrument = null;
+        this.pretInstrument = 0.0F;
+        this.stareInstrument = Status.NECUNOSCUT;
     }
 
-    public String getSimbol() {
-        return simbol;
+    public String getSimbolInstrument() {
+        return simbolInstrument;
     }
 
-    public void setSimbol(String simbol) {
-        this.simbol = simbol;
+    public void setSimbolInstrument(String simbolInstrument) {
+        this.simbolInstrument = simbolInstrument;
     }
 
-    public String getNume() {
-        return nume;
+    public String getNumeInstrument() {
+        return numeInstrument;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setNumeInstrument(String numeInstrument) {
+        this.numeInstrument = numeInstrument;
     }
 
-    public double getPret() {
-        return pret;
+    public double getPretInstrument() {
+        return pretInstrument;
     }
 
-    public void setPret(double pret) {
-        this.pret = pret;
+    public void setPretInstrument(double pretInstrument) {
+        this.pretInstrument = pretInstrument;
     }
 
-    public Status getStare() {
-        return stare;
+    public Status getStareInstrument() {
+        return stareInstrument;
     }
 
-    public void setStare(Status stare) {
-        this.stare = stare;
+    public void setStareInstrument(Status stareInstrument) {
+        this.stareInstrument = stareInstrument;
     }
 
     @Override
@@ -64,10 +64,10 @@ public class Instrument implements Evaluabil {
         System.out.println("Clasa citita " + numeClasa);
 
         Instrument local = new Instrument();
-        local.setSimbol(lineScanner.next());
-        local.setNume(lineScanner.next());
-        local.setPret(lineScanner.nextDouble());
-        local.setStare(Status.valueOf(lineScanner.next()));
+        local.setSimbolInstrument(lineScanner.next());
+        local.setNumeInstrument(lineScanner.next());
+        local.setPretInstrument(lineScanner.nextDouble());
+        local.setStareInstrument(Status.valueOf(lineScanner.next()));
 
         return local;
     }
@@ -80,9 +80,9 @@ public class Instrument implements Evaluabil {
 //                ", pret=" + pret +
 //                '}';
         return this.getClass().getName() + "," +
-                this.simbol + "," +
-                this.nume + "," +
-                Double.toString(this.pret) + "," +
-                stare.toString();
+                this.simbolInstrument + "," +
+                this.numeInstrument + "," +
+                Double.toString(this.pretInstrument) + "," +
+                stareInstrument.toString();
     }
 }

@@ -88,7 +88,6 @@ public class MainEntry {
             System.out.println(iter.toString());
         }
 
-//        PortofoliuGenerics instrumente = new PortofoliuGenerics<Instrument>(lista);
         PortofoliuGenerics instrumente = new PortofoliuGenerics<Instrument>();
         instrumente.setPortofoliu(lista);
         instrumente.appendInstrumentFinanciar(act1);
