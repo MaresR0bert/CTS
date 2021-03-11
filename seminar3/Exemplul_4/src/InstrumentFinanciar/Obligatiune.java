@@ -3,16 +3,16 @@ package InstrumentFinanciar;
 import java.util.Scanner;
 
 public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
-    private float cupon;
+    private float cuponObligatiune;
 
-    public Obligatiune(String simbol, String nume, double pret, Status stare, float cupon) {
+    public Obligatiune(String simbol, String nume, double pret, Status stare, float cuponObligatiune) {
         super(simbol, nume, pret, stare);
-        this.cupon = cupon;
+        this.cuponObligatiune = cuponObligatiune;
     }
 
     public Obligatiune() {
         super();
-        this.cupon = 0.0F;
+        this.cuponObligatiune = 0.0F;
     }
 
     @Override
@@ -28,36 +28,33 @@ public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
         local.setNumeInstrument(lineScanner.next());
         local.setPretInstrument(lineScanner.nextDouble());
         local.setStareInstrument(Status.valueOf(lineScanner.next()));
-        local.setCupon(lineScanner.nextFloat());
+        local.setCuponObligatiune(lineScanner.nextFloat());
 
         return local;
     }
 
-    public float getCupon() {
-        return cupon;
+    public float getCuponObligatiune() {
+        return cuponObligatiune;
     }
 
-    public void setCupon(float cupon) {
-        this.cupon = cupon;
+    public void setCuponObligatiune(float cuponObligatiune) {
+        this.cuponObligatiune = cuponObligatiune;
     }
 
     @Override
     public double valoare(Instrument instrument) {
-        return this.getPretInstrument() + this.cupon;
+        return this.getPretInstrument() + this.cuponObligatiune;
     }
 
 
     @Override
     public String toString() {
-//        return "Obligatiune{" +
-//                "cupon=" + cupon +
-//                '}';
         return this.getClass().getName() + "," +
                 this.getSimbolInstrument() + "," +
                 this.getNumeInstrument() + "," +
                 Double.toString(this.getPretInstrument()) + "," +
                 this.getStareInstrument().toString() + "," +
-                this.cupon;
+                this.cuponObligatiune;
     }
 
     @Override

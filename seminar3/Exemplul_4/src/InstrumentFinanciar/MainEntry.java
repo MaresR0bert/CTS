@@ -15,12 +15,12 @@ public class MainEntry {
         Obligatiune obligatiuneTGN = new Obligatiune("TGN", "Transgaz", 254.5, Status.NETRANZACTIONABIL, 11F);
         Obligatiune obligtiuneBVB = new Obligatiune("BVB", "Bursa de Valori Bucuresti", 24.6, Status.NETRANZACTIONABIL, 11F);
 
-        ArrayList<Instrument> lista = new ArrayList<Instrument>();
-        lista.add(actiuneALR);
-        lista.add(actiuneBRD);
-        lista.add(actiuneTLV);
-        lista.add(obligatiuneTGN);
-        lista.add(obligtiuneBVB);
+        ArrayList<Instrument> instrumentArrayList = new ArrayList<Instrument>();
+        instrumentArrayList.add(actiuneALR);
+        instrumentArrayList.add(actiuneBRD);
+        instrumentArrayList.add(actiuneTLV);
+        instrumentArrayList.add(obligatiuneTGN);
+        instrumentArrayList.add(obligtiuneBVB);
 
         FileWriter outFile = null;
         BufferedWriter writer = null;
@@ -29,10 +29,10 @@ public class MainEntry {
             outFile = new FileWriter("instrumenteFinanciare.csv", false);
             writer = new BufferedWriter(outFile);
 
-            for (Instrument i:lista) {
+            for (Instrument i:instrumentArrayList) {
                 System.out.println(i.toString());
                 writer.write(i.toString());
-                writer.newLine(); // writer.write("\r\n");
+                writer.newLine();
             }
 
             writer.close();
@@ -41,7 +41,7 @@ public class MainEntry {
             e.printStackTrace();
         }
 
-        ArrayDeque<Instrument> coada = new ArrayDeque<Instrument>();
+        ArrayDeque<Instrument> instrumentsQueue = new ArrayDeque<Instrument>();
 
         FileReader inFile = null;
         BufferedReader reader = null;
@@ -62,7 +62,7 @@ public class MainEntry {
                 Object local = clasa.getDeclaredConstructor().newInstance();
                 if (local instanceof Instrument) {
                     local = ((Instrument) local).parseFromString(linie, ",");
-                    coada.offerLast((Instrument) local);
+                    instrumentsQueue.offerLast((Instrument) local);
                 }
             }
 
@@ -78,15 +78,15 @@ public class MainEntry {
         }
 
         Instrument iter = null;
-        while(!coada.isEmpty()) {
-            iter = coada.pollFirst();
+        while(!instrumentsQueue.isEmpty()) {
+            iter = instrumentsQueue.pollFirst();
             System.out.println(iter.toString());
         }
 
         PortofoliuGenerics instrumente = new PortofoliuGenerics<Instrument>();
-        instrumente.setPortofoliu(lista);
+        instrumente.setPortofoliu(instrumentArrayList);
         instrumente.appendInstrumentFinanciar(actiuneALR);
-        for (Instrument i:lista) {
+        for (Instrument i:instrumentArrayList) {
             System.out.println(i.toString());
         }
 

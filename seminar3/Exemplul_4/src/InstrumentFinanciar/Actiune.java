@@ -52,7 +52,7 @@ public class Actiune extends Instrument implements Evaluabil, Actualizabil {
         return this.getClass().getName() + "," +
                 this.getSimbolInstrument() + "," +
                 this.getNumeInstrument() + "," +
-                Double.toString(this.getPretInstrument()) + "," +
+                this.getPretInstrument() + "," +
                 this.getStareInstrument().toString() + "," +
                 this.procentDividend;
     }
