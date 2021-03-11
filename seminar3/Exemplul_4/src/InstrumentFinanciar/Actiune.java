@@ -15,22 +15,8 @@ public class Actiune extends Instrument implements Evaluabil, Actualizabil {
         this.procentDividend = 0.0F;
     }
 
-    public float getProcentDividend() {
-        return procentDividend;
-    }
-
-    public void setProcentDividend(float procentDividend) {
-        this.procentDividend = procentDividend;
-    }
-
     @Override
-    public double valoare(Instrument instrument) {
-        return this.getPretInstrument() +
-                (this.getPretInstrument() * this.procentDividend / 100.0F);
-    }
-
-    @Override
-    public Object dinString(String linie, String separator) {
+    public Object parseFromString(String linie, String separator) {
         Scanner lineScanner = new Scanner(linie);
         lineScanner.useDelimiter(separator);
 
@@ -45,6 +31,20 @@ public class Actiune extends Instrument implements Evaluabil, Actualizabil {
         local.setProcentDividend(lineScanner.nextFloat());
 
         return local;
+    }
+
+    public float getProcentDividend() {
+        return procentDividend;
+    }
+
+    public void setProcentDividend(float procentDividend) {
+        this.procentDividend = procentDividend;
+    }
+
+    @Override
+    public double valoare(Instrument instrument) {
+        return this.getPretInstrument() +
+                (this.getPretInstrument() * this.procentDividend / 100.0F);
     }
 
     @Override

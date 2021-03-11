@@ -15,21 +15,8 @@ public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
         this.cupon = 0.0F;
     }
 
-    public float getCupon() {
-        return cupon;
-    }
-
-    public void setCupon(float cupon) {
-        this.cupon = cupon;
-    }
-
     @Override
-    public double valoare(Instrument instrument) {
-        return this.getPretInstrument() + this.cupon;
-    }
-
-    @Override
-    public Object dinString(String linie, String separator) {
+    public Object parseFromString(String linie, String separator) {
         Scanner lineScanner = new Scanner(linie);
         lineScanner.useDelimiter(separator);
 
@@ -45,6 +32,20 @@ public class Obligatiune extends Instrument implements Evaluabil, Actualizabil {
 
         return local;
     }
+
+    public float getCupon() {
+        return cupon;
+    }
+
+    public void setCupon(float cupon) {
+        this.cupon = cupon;
+    }
+
+    @Override
+    public double valoare(Instrument instrument) {
+        return this.getPretInstrument() + this.cupon;
+    }
+
 
     @Override
     public String toString() {

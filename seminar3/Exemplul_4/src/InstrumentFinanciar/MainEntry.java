@@ -9,23 +9,18 @@ import java.util.Scanner;
 
 public class MainEntry {
     public static void main(String[] args) {
-        Instrument instr1 = new Instrument("BRD",
-                "Banca Romana pentru Dezvoltare", 12.78, Status.TRANZACTIONABIL);
-        Instrument instr2= new Instrument("TLV",
-                "Banca Transilvania", 7.34, Status.TRANZACTIONABIL);
-        Instrument instr3 = new Instrument("BVB",
-                "Bursa de Valori Bucuresti", 24.6, Status.NETRANZACTIONABIL);
-        Actiune act1 = new Actiune("ALR", "Alro Slatina", 2.67,
-                Status.TRANZACTIONABIL, 2.7F);
-        Obligatiune oblig1 = new Obligatiune("TGN", "Transgaz", 254.5,
-                Status.NETRANZACTIONABIL, 11F);
+        Actiune actiuneALR = new Actiune("ALR", "Alro Slatina", 2.67, Status.TRANZACTIONABIL, 2.7F);
+        Actiune actiuneBRD = new Actiune("BRD","Banca Romana pentru Dezvoltare", 12.78, Status.TRANZACTIONABIL, 2.8F);
+        Actiune actiuneTLV = new Actiune("TLV", "Banca Transilvania", 7.34, Status.TRANZACTIONABIL,3F);
+        Obligatiune obligatiuneTGN = new Obligatiune("TGN", "Transgaz", 254.5, Status.NETRANZACTIONABIL, 11F);
+        Obligatiune obligtiuneBVB = new Obligatiune("BVB", "Bursa de Valori Bucuresti", 24.6, Status.NETRANZACTIONABIL, 11F);
 
         ArrayList<Instrument> lista = new ArrayList<Instrument>();
-        lista.add(act1);
-        lista.add(oblig1);
-        lista.add(instr1);
-        lista.add(instr2);
-        lista.add(instr3);
+        lista.add(actiuneALR);
+        lista.add(actiuneBRD);
+        lista.add(actiuneTLV);
+        lista.add(obligatiuneTGN);
+        lista.add(obligtiuneBVB);
 
         FileWriter outFile = null;
         BufferedWriter writer = null;
@@ -66,7 +61,7 @@ public class MainEntry {
 
                 Object local = clasa.getDeclaredConstructor().newInstance();
                 if (local instanceof Instrument) {
-                    local = ((Instrument) local).dinString(linie, ",");
+                    local = ((Instrument) local).parseFromString(linie, ",");
                     coada.offerLast((Instrument) local);
                 }
             }
@@ -90,7 +85,7 @@ public class MainEntry {
 
         PortofoliuGenerics instrumente = new PortofoliuGenerics<Instrument>();
         instrumente.setPortofoliu(lista);
-        instrumente.appendInstrumentFinanciar(act1);
+        instrumente.appendInstrumentFinanciar(actiuneALR);
         for (Instrument i:lista) {
             System.out.println(i.toString());
         }

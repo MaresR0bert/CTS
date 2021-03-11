@@ -1,9 +1,7 @@
 package InstrumentFinanciar;
 
 
-import java.util.Scanner;
-
-public class Instrument implements Evaluabil, ParceableFromString {
+abstract public class Instrument implements Evaluabil, ParseableFromString {
     private String simbolInstrument;
     private String numeInstrument;
     private double pretInstrument;
@@ -56,29 +54,10 @@ public class Instrument implements Evaluabil, ParceableFromString {
     }
 
     @Override
-    public Object dinString(String linie, String separator) {
-        Scanner lineScanner = new Scanner(linie);
-        lineScanner.useDelimiter(separator);
-
-        String numeClasa = lineScanner.next();
-        System.out.println("Clasa citita " + numeClasa);
-
-        Instrument local = new Instrument();
-        local.setSimbolInstrument(lineScanner.next());
-        local.setNumeInstrument(lineScanner.next());
-        local.setPretInstrument(lineScanner.nextDouble());
-        local.setStareInstrument(Status.valueOf(lineScanner.next()));
-
-        return local;
-    }
+    public abstract Object parseFromString(String linie, String separator);
 
     @Override
     public String toString() {
-//        return "Instrument{" +
-//                "simbol='" + simbol + '\'' +
-//                ", nume='" + nume + '\'' +
-//                ", pret=" + pret +
-//                '}';
         return this.getClass().getName() + "," +
                 this.simbolInstrument + "," +
                 this.numeInstrument + "," +
